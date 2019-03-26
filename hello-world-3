@@ -1,6 +1,6 @@
 workflow HelloWorld {
 
-	String s = "Hello World! Ron and Sam"
+	String s = "Hello World! Ron and Sam with gtex rnaseq v9"
   	String memory = "4"
 	String disk_space = "1"
 	String num_threads = "1"
