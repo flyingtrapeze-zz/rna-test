@@ -1,7 +1,10 @@
 workflow HelloWorld {
 
 	String s = "Hello World! Ron and Sam"
-  
+  	String memory = "4"
+	String disk_space = "1"
+	String num_threads = "1"
+	String num_preempt = "1"
   	call echo { 
   		input: s = s 
 	}
@@ -14,13 +17,15 @@ task echo {
 	command {
     	echo ${s}!
     }
+    
     runtime {
-    	docker: "ubuntu"
-        cpu: 1
-        disks: "local-disk 1 HDD"
-        preemptible: 1  
-        yo: "sup"
+        docker: "gcr.io/broad-cga-francois-gtex/gtex_rnaseq:V9"
+        memory: "${memory}GB"
+        disks: "local-disk ${disk_space} HDD"
+        cpu: "${num_threads}"
+        preemptible: "${num_preempt}"
     }
+
     output {
     	String out = read_string(stdout())
     }
